@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  PROVIDER
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  RESCHEDULED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String
+  role      Role     @default(CUSTOMER)
+  avatar    String?
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  provider ProviderProfile? // Using provider as relation name to align with ProviderProfile model
+  bookings Booking[]
+  reviews  Review[]
+}
+
+model ProviderProfile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  businessName  String
+  category      String
+  bio           String?
+  location      String?
+  avatar        String?
+  rating        Float    @default(0)
+  totalBookings Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  services         Service[]
+  slots            AvailabilitySlot[]
+  bookings         Booking[]
+  reviews          Review[]
+}
+
+model Service {
+  id          String          @id @default(cuid())
+  providerId  String
+  provider    ProviderProfile @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  duration    Int             // in minutes
+  price       Float
+  currency    String          @default("USD")
+  isActive    Boolean         @default(true)
+  isDeleted   Boolean         @default(false)
+  deletedAt   DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  bookings    Booking[]
+  editHistory ServiceEditHistory[]
+}
+
+model ServiceEditHistory {
+  id         String   @id @default(cuid())
+  serviceId  String
+  service    Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  editDate   DateTime @default(now())
+  oldContent Json
+  order      Int
+}
+
+model AvailabilitySlot {
+  id            String          @id @default(cuid())
+  providerId    String
+  provider      ProviderProfile @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  date          DateTime        @db.Date
+  startTime     String          // "09:00"
+  endTime       String          // "09:30"
+  isBooked      Boolean         @default(false)
+  recurringRule String?         // RRULE format or simplified JSON rule
+  isDeleted     Boolean         @default(false)
+  deletedAt     DateTime?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  booking       Booking?
+  editHistory   AvailabilitySlotEditHistory[]
+}
+
+model AvailabilitySlotEditHistory {
+  id                 String           @id @default(cuid())
+  availabilitySlotId String
+  availabilitySlot   AvailabilitySlot @relation(fields: [availabilitySlotId], references: [id], onDelete: Cascade)
+  editDate           DateTime         @default(now())
+  oldContent         Json
+  order              Int
+}
+
+model Booking {
+  id         String           @id @default(cuid())
+  status     BookingStatus    @default(PENDING)
+  startTime  DateTime
+  endTime    DateTime
+  notes      String?
+  totalPrice Float
+  
+  userId     String
+  user       User             @relation(fields: [userId], references: [id], onDelete: Restrict)
+  providerId String
+  provider   ProviderProfile  @relation(fields: [providerId], references: [id], onDelete: Restrict)
+  serviceId  String
+  service    Service          @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  slotId     String           @unique
+  slot       AvailabilitySlot @relation(fields: [slotId], references: [id], onDelete: Restrict)
+
+  isDeleted  Boolean          @default(false)
+  deletedAt  DateTime?
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  payment     Payment?
+  editHistory BookingEditHistory[]
+}
+
+model BookingEditHistory {
+  id         String   @id @default(cuid())
+  bookingId  String
+  booking    Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  editDate   DateTime @default(now())
+  oldContent Json
+  order      Int
+}
+
+model Payment {
+  id              String   @id @default(cuid())
+  bookingId       String   @unique
+  booking         Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  providerRevenue Float
+  platformFee     Float
+  stripeId        String?  @unique
+  status          String   @default("PENDING") // PENDING, COMPLETED, REFUNDED
+  isDeleted       Boolean  @default(false)
+  deletedAt       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  editHistory     PaymentEditHistory[]
+}
+
+model PaymentEditHistory {
+  id         String   @id @default(cuid())
+  paymentId  String
+  payment    Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  editDate   DateTime @default(now())
+  oldContent Json
+  order      Int
+}
+
+model Review {
+  id         String          @id @default(cuid())
+  providerId String
+  provider   ProviderProfile @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rating     Int             // 1 to 5
+  comment    String?
+  isDeleted  Boolean         @default(false)
+  deletedAt  DateTime?
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  editHistory ReviewEditHistory[]
+}
+
+model ReviewEditHistory {
+  id         String   @id @default(cuid())
+  reviewId   String
+  review     Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  editDate   DateTime @default(now())
+  oldContent Json
+  order      Int
+}
+
+model AdminActionLog {
+  id        String   @id @default(cuid())
+  adminId   String   // Can reference User model if needed, but often kept decoupled
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+}
