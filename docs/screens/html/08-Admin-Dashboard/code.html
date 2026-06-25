@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookFlow Admin Dashboard Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f4f3f0",
+                        "secondary-container": "#e2e2eb",
+                        "on-tertiary-container": "#bdffdb",
+                        "surface-bright": "#faf9f6",
+                        "on-surface": "#1b1c1a",
+                        "surface-container-highest": "#e3e2df",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "outline": "#737686",
+                        "primary-container": "#2563eb",
+                        "on-surface-variant": "#434655",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary": "#006242",
+                        "on-background": "#1b1c1a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed": "#00174b",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#0053db",
+                        "secondary-fixed-dim": "#c5c6ce",
+                        "surface-container-high": "#e9e8e5",
+                        "surface-container": "#efeeeb",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#eeefff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f312f",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "background": "#faf9f6",
+                        "tertiary-container": "#007d55",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#191b22",
+                        "surface-dim": "#dbdad7",
+                        "inverse-on-surface": "#f2f1ee",
+                        "surface": "#faf9f6",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004ac6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary": "#5d5e65",
+                        "surface-variant": "#e3e2df",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed": "#e2e2eb",
+                        "on-secondary-container": "#63646c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "margin-desktop": "48px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "data-mono": ["14px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#F7F6F3] text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+<!-- Admin Sidebar -->
+<aside class="fixed inset-y-0 left-0 flex flex-col z-50 h-screen w-[240px] flex-shrink-0 bg-[#0F1117] border-r border-[#E8E6E1] shadow-md">
+<!-- Brand/Logo -->
+<div class="h-16 flex items-center px-6 border-b border-white/10 shrink-0">
+<div class="flex items-center gap-2">
+<span class="font-headline-lg text-headline-lg text-white font-[800] tracking-tighter">BookFlow</span>
+</div>
+<div class="ml-2 bg-red-500 text-white font-label-caps text-label-caps px-2 py-1 rounded-full whitespace-nowrap">Admin</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 overflow-y-auto py-6 px-3 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-white bg-white/10 border-l-3 border-[#2563EB] rounded-lg active" data-intent="Overview" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-headline-md text-headline-md flex-1 text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 rounded-lg" data-intent="Bookings" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-headline-md text-headline-md flex-1 text-sm">Bookings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 rounded-lg" data-intent="Providers" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-headline-md text-headline-md flex-1 text-sm">Providers</span>
+<span class="bg-amber-500 text-white font-label-caps text-label-caps px-2 py-0.5 rounded-full">8</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 rounded-lg" data-intent="Platform Health" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-headline-md text-headline-md flex-1 text-sm">Platform Health</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 rounded-lg" data-intent="Financials" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-headline-md text-headline-md flex-1 text-sm">Financials</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200 rounded-lg" data-intent="Settings" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-headline-md text-headline-md flex-1 text-sm">Settings</span>
+</a>
+</nav>
+<!-- User Profile Area -->
+<div class="p-4 border-t border-white/10 shrink-0">
+<button class="flex items-center gap-3 w-full p-2 rounded-lg hover:bg-white/5 transition-colors text-left">
+<div class="w-10 h-10 rounded-full bg-surface-tint text-on-primary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0">
+<img alt="Admin User Profile" class="w-full h-full object-cover rounded-full" data-alt="A highly detailed close-up portrait photograph of an administrative user, 'Zack River', a professional in their mid-30s with short, neat dark hair and a confident, approachable expression. The lighting is bright and clean, typical of a modern light-mode digital workspace. The background is a soft, warm off-white, emphasizing a high-end, corporate yet tactile aesthetic. The overall mood is reliable and professional, with a crisp, production-ready quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMns8Ym1qmGCcgoLx-tk60nsm9WjiOkqcax33tINW74VzpaPFypmq1djUjhpc0qbIN4P48usxyL0Wy4cvKEwnMhhcVS7o0tWxMrJyRE37uWKRfosXUpJOocjsyJRUfcDI66VMO7K4GT8SRsf1HNV6bsqPPRy3CPtnBMMfn8WACylJZ3zmFEX2d0HZYMsWKgwVhvsa3IgVZGlq_yv9tEuerNwkNwrf2mUwbmKdFLFdUmIRH7__Cjoq5EdbjnTPmJ9H0ReD877TUww"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-headline-md text-headline-md text-sm text-white truncate font-[700]">Zack River</p>
+<p class="font-body-sm text-body-sm text-white/60 truncate">System Admin</p>
+</div>
+</button>
+<div class="mt-4">
+<button class="w-full bg-[#2563EB] text-white font-headline-md text-headline-md text-sm py-2 rounded-lg hover:bg-blue-700 transition-colors">Review Approvals</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[240px] flex flex-col h-screen overflow-hidden bg-[#F7F6F3]">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-6 sticky top-0 z-40 bg-white border-b border-[#E8E6E1] h-16 shrink-0">
+<div class="flex flex-col">
+<h1 class="font-headline-md text-headline-md font-[800] text-on-surface">Good morning, Zack</h1>
+<p class="font-body-sm text-body-sm text-secondary">Thursday, 27 June 2025</p>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="text-secondary hover:text-[#2563EB] transition-colors p-2 rounded-full hover:bg-[#F7F6F3]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Help" class="text-secondary hover:text-[#2563EB] transition-colors p-2 rounded-full hover:bg-[#F7F6F3]">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<button aria-label="Account" class="w-8 h-8 rounded-full bg-secondary-container text-on-surface flex items-center justify-center hover:ring-2 ring-[#2563EB] transition-all overflow-hidden">
+<img alt="Account Profile" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait photograph of an administrative user, 'Zack River', a professional in their mid-30s with short, neat dark hair and a confident, approachable expression. The lighting is bright and clean, typical of a modern light-mode digital workspace. The background is a soft, warm off-white, emphasizing a high-end, corporate yet tactile aesthetic. The overall mood is reliable and professional, with a crisp, production-ready quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwKnrgFbJs5_qkhEZXhveYBSHJfOSpxpTaFZjJp9na5zAOn4WU71y9_q_fi40sNSRpmQ_djJifwzlndOc435f6Iy4t76gRVIZtZkzQn0yXSXZGxIp3LcP0x0tL0EmyIfpbxdGX0IgjiiUgosYTzf1_gnlEZJe8mvPK-Hu5Z0asIaOrm0FBk77MWoVYoS3u_gYoU3dCiQ-GkpX6XUq5OMp4gdZl1H58McEwuVemwEAQJ7L_dgh9qElK-tJF3-U0L9LOhYuM3_wXmw"/>
+</button>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<div class="flex-1 overflow-y-auto p-gutter w-full max-w-[1440px] mx-auto">
+<!-- Stat Cards Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-md mb-xl">
+<!-- Card 1 -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)] hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="font-body-sm text-body-sm text-secondary">Total Users</p>
+<span class="material-symbols-outlined text-outline" data-icon="group">group</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="font-data-mono text-data-mono text-on-surface text-3xl font-[700]">2,847</h3>
+<span class="font-label-caps text-label-caps text-emerald-600">+34 this week</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)] hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="font-body-sm text-body-sm text-secondary">Active Providers</p>
+<span class="material-symbols-outlined text-outline" data-icon="storefront">storefront</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="font-data-mono text-data-mono text-on-surface text-3xl font-[700]">412</h3>
+<span class="font-label-caps text-label-caps text-[#2563EB] cursor-pointer hover:underline">8 pending</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)] hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="font-body-sm text-body-sm text-secondary">Bookings (MTD)</p>
+<span class="material-symbols-outlined text-outline" data-icon="receipt_long">receipt_long</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="font-data-mono text-data-mono text-on-surface text-3xl font-[700]">1,203</h3>
+<span class="font-label-caps text-label-caps text-emerald-600">+18%</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)] hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="font-body-sm text-body-sm text-secondary">Platform Revenue</p>
+<span class="material-symbols-outlined text-outline" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="font-data-mono text-data-mono text-on-surface text-2xl font-[700]">EGP 284K</h3>
+<span class="font-label-caps text-label-caps text-emerald-600">+22%</span>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)] hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="font-body-sm text-body-sm text-secondary">Success Rate</p>
+<span class="material-symbols-outlined text-outline" data-icon="check_circle">check_circle</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="font-data-mono text-data-mono text-on-surface text-3xl font-[700]">98.2%</h3>
+<span class="font-label-caps text-label-caps text-error">-0.3%</span>
+</div>
+</div>
+</div>
+<!-- Two Columns Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-gutter mb-xl">
+<!-- Left Column: Recent Bookings (60%) -->
+<div class="lg:col-span-3 bg-white rounded-[12px] border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)] overflow-hidden flex flex-col">
+<div class="p-md border-b border-[#E8E6E1] flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface font-[800]">Recent Bookings</h2>
+<button class="text-[#2563EB] font-body-sm text-body-sm hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white border-b border-[#E8E6E1]">
+<th class="p-3 font-label-caps text-label-caps text-secondary font-medium">Ref</th>
+<th class="p-3 font-label-caps text-label-caps text-secondary font-medium">Customer</th>
+<th class="p-3 font-label-caps text-label-caps text-secondary font-medium">Provider</th>
+<th class="p-3 font-label-caps text-label-caps text-secondary font-medium">Service</th>
+<th class="p-3 font-label-caps text-label-caps text-secondary font-medium text-right">Amount</th>
+<th class="p-3 font-label-caps text-label-caps text-secondary font-medium text-center">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="bg-[#F7F6F3] hover:bg-gray-100 transition-colors">
+<td class="p-3 font-data-mono text-data-mono">#BF-4829</td>
+<td class="p-3">Aisha M.</td>
+<td class="p-3 font-medium">SmileCare Clinic</td>
+<td class="p-3 text-secondary">Dental Consult</td>
+<td class="p-3 font-data-mono text-data-mono text-right">EGP 450</td>
+<td class="p-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded-sm bg-emerald-100 border border-emerald-200 text-emerald-800 font-label-caps text-label-caps text-[10px]">Confirmed</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-white hover:bg-gray-50 transition-colors">
+<td class="p-3 font-data-mono text-data-mono">#BF-4828</td>
+<td class="p-3">Omar K.</td>
+<td class="p-3 font-medium">Glow Studio</td>
+<td class="p-3 text-secondary">Haircut</td>
+<td class="p-3 font-data-mono text-data-mono text-right">EGP 200</td>
+<td class="p-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded-sm bg-emerald-100 border border-emerald-200 text-emerald-800 font-label-caps text-label-caps text-[10px]">Confirmed</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-[#F7F6F3] hover:bg-gray-100 transition-colors">
+<td class="p-3 font-data-mono text-data-mono">#BF-4827</td>
+<td class="p-3">Nour E.</td>
+<td class="p-3 font-medium">FitZone Gym</td>
+<td class="p-3 text-secondary">PT Session</td>
+<td class="p-3 font-data-mono text-data-mono text-right">EGP 350</td>
+<td class="p-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded-sm bg-blue-100 border border-blue-200 text-blue-800 font-label-caps text-label-caps text-[10px]">Pending</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-white hover:bg-gray-50 transition-colors">
+<td class="p-3 font-data-mono text-data-mono">#BF-4826</td>
+<td class="p-3">Tariq H.</td>
+<td class="p-3 font-medium">LexConsult</td>
+<td class="p-3 text-secondary">Legal Advice</td>
+<td class="p-3 font-data-mono text-data-mono text-right">EGP 1200</td>
+<td class="p-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded-sm bg-emerald-100 border border-emerald-200 text-emerald-800 font-label-caps text-label-caps text-[10px]">Confirmed</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="bg-[#F7F6F3] hover:bg-gray-100 transition-colors">
+<td class="p-3 font-data-mono text-data-mono">#BF-4825</td>
+<td class="p-3">Salma R.</td>
+<td class="p-3 font-medium">SmileCare Clinic</td>
+<td class="p-3 text-secondary">Teeth Whitening</td>
+<td class="p-3 font-data-mono text-data-mono text-right">EGP 800</td>
+<td class="p-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded-sm bg-red-100 border border-red-200 text-red-800 font-label-caps text-label-caps text-[10px]">Cancelled</span>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="bg-white hover:bg-gray-50 transition-colors">
+<td class="p-3 font-data-mono text-data-mono">#BF-4824</td>
+<td class="p-3">Kareem S.</td>
+<td class="p-3 font-medium">HomeFixPro</td>
+<td class="p-3 text-secondary">Plumbing Repair</td>
+<td class="p-3 font-data-mono text-data-mono text-right">EGP 250</td>
+<td class="p-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded-sm bg-emerald-100 border border-emerald-200 text-emerald-800 font-label-caps text-label-caps text-[10px]">Confirmed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Pending Approvals (40%) -->
+<div class="lg:col-span-2 bg-white rounded-[12px] border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)] p-md flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-surface font-[800]">Pending Approvals</h2>
+<span class="bg-blue-100 text-[#2563EB] font-label-caps text-label-caps px-2 py-0.5 rounded-full border border-blue-200">8 waiting</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 flex-1 overflow-y-auto pr-1">
+<!-- Approval Card 1 -->
+<div class="bg-white p-3 rounded-lg border border-[#E8E6E1] flex flex-col gap-3 hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="local_hospital">local_hospital</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-headline-md text-headline-md text-sm truncate font-[700]">HealPoint Clinic</h4>
+<p class="font-body-sm text-body-sm text-secondary truncate">Medical • Cairo</p>
+<p class="font-data-mono text-data-mono text-xs text-outline mt-1">Submitted 2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-2 border-t border-[#E8E6E1] pt-3">
+<button class="flex-1 bg-white text-on-surface font-body-sm text-body-sm py-1.5 rounded-md border border-[#E8E6E1] hover:bg-gray-50 transition-colors">Reject</button>
+<button class="flex-1 bg-[#2563EB] text-white font-body-sm text-body-sm py-1.5 rounded-md hover:bg-blue-700 transition-colors">Approve</button>
+</div>
+</div>
+<!-- Approval Card 2 -->
+<div class="bg-white p-3 rounded-lg border border-[#E8E6E1] flex flex-col gap-3 hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-rose-400 to-pink-600 text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="content_cut">content_cut</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-headline-md text-headline-md text-sm truncate font-[700]">StyleCraft Salon</h4>
+<p class="font-body-sm text-body-sm text-secondary truncate">Beauty • Alexandria</p>
+<p class="font-data-mono text-data-mono text-xs text-outline mt-1">Submitted 5 hours ago</p>
+</div>
+</div>
+<div class="flex gap-2 border-t border-[#E8E6E1] pt-3">
+<button class="flex-1 bg-white text-on-surface font-body-sm text-body-sm py-1.5 rounded-md border border-[#E8E6E1] hover:bg-gray-50 transition-colors">Reject</button>
+<button class="flex-1 bg-[#2563EB] text-white font-body-sm text-body-sm py-1.5 rounded-md hover:bg-blue-700 transition-colors">Approve</button>
+</div>
+</div>
+<!-- Approval Card 3 -->
+<div class="bg-white p-3 rounded-lg border border-[#E8E6E1] flex flex-col gap-3 hover:shadow-[0_8px_16px_rgba(15,17,23,0.08)] transition-shadow">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-400 to-purple-600 text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-headline-md text-headline-md text-sm truncate font-[700]">MindCoach</h4>
+<p class="font-body-sm text-body-sm text-secondary truncate">Therapy • Giza</p>
+<p class="font-data-mono text-data-mono text-xs text-outline mt-1">Submitted 1 day ago</p>
+</div>
+</div>
+<div class="flex gap-2 border-t border-[#E8E6E1] pt-3">
+<button class="flex-1 bg-white text-on-surface font-body-sm text-body-sm py-1.5 rounded-md border border-[#E8E6E1] hover:bg-gray-50 transition-colors">Reject</button>
+<button class="flex-1 bg-[#2563EB] text-white font-body-sm text-body-sm py-1.5 rounded-md hover:bg-blue-700 transition-colors">Approve</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Insights -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter pb-xl">
+<!-- New Users Today -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)]">
+<h3 class="font-headline-md text-headline-md text-on-surface text-base mb-4 font-[800]">New Users Today</h3>
+<div class="flex items-end justify-between">
+<div class="flex flex-col">
+<span class="font-data-mono text-data-mono text-3xl font-[700]">12</span>
+<span class="font-body-sm text-body-sm text-secondary">Onboarded</span>
+</div>
+<div class="w-24 h-12 flex items-end gap-1 opacity-80">
+<!-- Simple CSS bar chart sparkline -->
+<div class="w-1/6 bg-[#2563EB] h-[20%] rounded-t-sm"></div>
+<div class="w-1/6 bg-[#2563EB] h-[40%] rounded-t-sm"></div>
+<div class="w-1/6 bg-[#2563EB] h-[30%] rounded-t-sm"></div>
+<div class="w-1/6 bg-[#2563EB] h-[60%] rounded-t-sm"></div>
+<div class="w-1/6 bg-[#2563EB] h-[50%] rounded-t-sm"></div>
+<div class="w-1/6 bg-[#2563EB] h-[100%] rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- Top Provider Today -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)]">
+<h3 class="font-headline-md text-headline-md text-on-surface text-base mb-4 font-[800]">Top Provider Today</h3>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-[#F7F6F3] border border-[#E8E6E1] overflow-hidden shrink-0">
+<img alt="SmileCare Logo" class="w-full h-full object-cover" data-alt="A detailed logo for 'SmileCare Clinic', featuring a clean, modern, minimalist tooth icon combined with a subtle smile curve. The design uses a crisp medical blue and bright white palette. The aesthetic is corporate, professional, and trustworthy, suitable for a high-end light-mode healthcare application. The background is pure white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrr8pMJG4m_R0jP5ilVpShceJX3WuHUxEKCWXOiPhrbF8LRaYma8BfxxzGgRQTw4nvkvqgDUzypnt-7CAnnimNReP8GirWYLaCK6c0g51tUMdjuLlcL-mYwZspil1up5XXfZqeg-218fkDaxmGNxMMMpBSzGaY5KzcBLOMEOH2Va5KE_O5hPObPtcIpivgOGTutnohsqEi4e79X422cAfh8D6RVmi3TOAGhW8l76y_gWFSzhHhMlvBkeVFDrv6dtjyZ309x486xw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-base font-[700]">SmileCare Clinic</span>
+<span class="font-data-mono text-data-mono text-secondary">EGP 4,200 generated</span>
+</div>
+</div>
+</div>
+<!-- Platform Health -->
+<div class="bg-white rounded-[12px] p-md border border-[#E8E6E1] shadow-[0_2px_4px_rgba(15,17,23,0.04)]">
+<h3 class="font-headline-md text-headline-md text-on-surface text-base mb-4 font-[800]">Platform Health</h3>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-secondary">Avg. Confirm Time</span>
+<span class="font-data-mono text-data-mono text-on-surface">4.2 mins</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-secondary">Mobile Bookings</span>
+<span class="font-data-mono text-data-mono text-on-surface">78%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-secondary">Repeat Customers</span>
+<span class="font-data-mono text-data-mono text-on-surface">42%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

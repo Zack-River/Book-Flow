@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Provider Directory - BookFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#faf9f6",
+                        "surface-tint": "#0053db",
+                        "secondary-fixed": "#e2e2eb",
+                        "secondary-fixed-dim": "#c5c6ce",
+                        "outline": "#737686",
+                        "on-secondary-fixed": "#191b22",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary": "#004ac6",
+                        "on-surface": "#1b1c1a",
+                        "primary-container": "#2563eb",
+                        "surface-bright": "#faf9f6",
+                        "surface-container-low": "#f4f3f0",
+                        "on-tertiary-fixed": "#002113",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e9e8e5",
+                        "outline-variant": "#c3c6d7",
+                        "on-primary-container": "#eeefff",
+                        "surface-dim": "#dbdad7",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-container": "#bdffdb",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#63646c",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#007d55",
+                        "inverse-surface": "#2f312f",
+                        "inverse-on-surface": "#f2f1ee",
+                        "surface": "#faf9f6",
+                        "secondary-container": "#e2e2eb",
+                        "on-primary-fixed": "#00174b",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#006242",
+                        "on-background": "#1b1c1a",
+                        "surface-variant": "#e3e2df",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-container-highest": "#e3e2df",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container": "#efeeeb",
+                        "secondary": "#5d5e65"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "3xl": "64px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "2xl": "48px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    },
+                    boxShadow: {
+                        'card-subtle': '0 2px 4px rgba(15, 17, 23, 0.04)',
+                        'card-lifted': '0 8px 16px rgba(15, 17, 23, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#F7F6F3] text-on-background font-body-md min-h-screen flex flex-col pt-16">
+<!-- TopNavBar Component -->
+<nav class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-[1440px] mx-auto">
+<div class="flex items-center space-x-xl">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">BookFlow</a>
+<div class="hidden md:flex space-x-lg">
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200 active:scale-95 transition-transform" href="#">Features</a>
+<a class="text-primary dark:text-primary-fixed-dim font-semibold border-b-2 border-primary active:scale-95 transition-transform" href="#">Providers</a>
+<a class="text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200 active:scale-95 transition-transform" href="#">Pricing</a>
+</div>
+</div>
+<div class="flex items-center space-x-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-body-md font-medium px-4 py-2 rounded-md active:scale-95">Log In</button>
+<button class="bg-primary-container text-on-primary rounded-lg px-4 py-2 font-body-md font-medium hover:bg-primary-fixed-variant transition-colors active:scale-95">Sign Up</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col md:flex-row px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full pt-xl pb-3xl gap-gutter">
+<!-- Left Sidebar (Sticky Filter) -->
+<aside class="w-full md:w-[280px] flex-shrink-0 self-start md:sticky md:top-24 space-y-xl">
+<!-- Search -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-[44px] pl-10 pr-4 bg-surface rounded-lg border border-outline-variant focus:border-primary-container focus:ring-2 focus:ring-primary-fixed-dim/50 transition-all text-body-sm font-body-sm" placeholder="Search providers..." type="text"/>
+</div>
+<!-- Categories -->
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Category</h3>
+<div class="space-y-sm">
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center space-x-3">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Medical</span>
+</div>
+<span class="text-data-mono font-data-mono text-outline text-xs">42</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center space-x-3">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Dental</span>
+</div>
+<span class="text-data-mono font-data-mono text-outline text-xs">38</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center space-x-3">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Beauty</span>
+</div>
+<span class="text-data-mono font-data-mono text-outline text-xs">67</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center space-x-3">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Fitness</span>
+</div>
+<span class="text-data-mono font-data-mono text-outline text-xs">51</span>
+</label>
+</div>
+</div>
+<!-- Rating Filter -->
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Minimum Rating</h3>
+<div class="flex space-x-1 cursor-pointer">
+<span class="material-symbols-outlined text-amber-400" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-outline-variant">star</span>
+</div>
+</div>
+<!-- Clear Filters -->
+<button class="text-primary-container hover:text-on-primary-fixed-variant text-sm font-medium transition-colors">Clear all filters</button>
+</aside>
+<!-- Right Results Area -->
+<div class="flex-1 flex flex-col space-y-md">
+<div class="flex justify-between items-end mb-sm border-b border-outline-variant/30 pb-sm">
+<span class="text-body-sm text-on-surface-variant">Showing 302 providers</span>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<div class="bg-surface rounded-xl shadow-card-subtle border border-outline-variant/50 overflow-hidden hover:shadow-card-lifted hover:-translate-y-0.5 hover:border-primary-fixed-dim transition-all duration-200 group relative flex flex-col h-full">
+<div class="h-48 w-full bg-gradient-to-br from-sky-400 to-blue-600 relative">
+<div class="absolute top-sm right-sm bg-surface text-on-surface px-2 py-1 rounded-full text-[10px] font-bold tracking-wide shadow-sm uppercase">Dental</div>
+</div>
+<div class="relative px-md pt-8 pb-md flex-grow flex flex-col">
+<div class="absolute -top-6 left-md h-12 w-12 rounded-full border-2 border-surface bg-surface overflow-hidden flex items-center justify-center shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a pristine, sterile dental tool resting on a highly reflective blue metallic tray in a modern, brightly lit clinical environment. The lighting is cool, crisp, and surgical. Depth of field is shallow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiMd6M7fsq3LRbXIXj32CF1wUnFTEQrw_HTWsdKD4GaBpfjFDIiyhYJOvlewEKNm7TsdTjbm3XYLc9VGCFKNFr9FmLU6MEB6VlEdhtP4f0G1wzovPvQdVCIrSICNwicsP5gbQnW-hYpeyprtLQUGbNK1iVafit5ArYeE2timiXLUvqeXvlraQys-BrNxHb6oMIV5mENQ1g2pjWiNp87ZUD70qI8IJoGLmhhtxLwlMJX-NvIcscFIgPaUemvCO6Fda6fLUbIDSktg"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface truncate group-hover:text-primary transition-colors">SmileCare Dental Clinic</h4>
+<div class="flex items-center text-outline text-xs mt-1 space-x-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Maadi, Cairo</span>
+</div>
+<div class="flex items-center mt-2 space-x-1">
+<span class="material-symbols-outlined text-amber-400 text-[14px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-medium text-on-surface">4.9</span>
+<span class="text-xs text-outline">(124 reviews)</span>
+</div>
+<div class="flex flex-wrap gap-2 mt-md">
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] text-on-surface-variant">Checkup</span>
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] text-on-surface-variant">Cleaning</span>
+</div>
+<div class="mt-auto pt-md">
+<div class="border-t border-outline-variant/30 pb-md"></div>
+<div class="flex items-center justify-between">
+<span class="font-data-mono text-data-mono text-on-surface-variant">From EGP 200</span>
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded-md text-sm font-medium hover:bg-primary-fixed-variant transition-colors flex items-center space-x-1">
+<span>Book</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-xl shadow-card-subtle border border-outline-variant/50 overflow-hidden hover:shadow-card-lifted hover:-translate-y-0.5 hover:border-primary-fixed-dim transition-all duration-200 group relative flex flex-col h-full">
+<div class="h-48 w-full bg-gradient-to-br from-rose-400 to-pink-500 relative">
+<div class="absolute top-sm right-sm bg-surface text-on-surface px-2 py-1 rounded-full text-[10px] font-bold tracking-wide shadow-sm uppercase">Beauty</div>
+</div>
+<div class="relative px-md pt-8 pb-md flex-grow flex flex-col">
+<div class="absolute -top-6 left-md h-12 w-12 rounded-full border-2 border-surface bg-surface overflow-hidden flex items-center justify-center shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A soft-focus close up of organic skincare products arranged elegantly on a warm, textured stone slab bathed in golden hour natural sunlight. The color palette is composed of warm blushes, creams, and earthy neutrals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3isyTZjlmgutY4HBH0-n_D2ZnFVUBaSIl5RpCIkh5vh80Ic6Mt5gjhfLXaTRmkcaSjA0r2yNnlXSaXiR2zLbPhPUpyl9PT7rWSgp_Ysoa_KUnsGBxamiMH4IQWg-ErBTYl4e6VU9X95ZOLwXjcX4gYF-KccESQeElLXR64AEkH9sPNx4pyAyX63PvYkEwdOcVHackvGXoCgN-NPWuAVVtD3DOxua6rpVJ0RJACTTZiqi1VDW3krLUNG2CX0K2Rv5HrGeJ6mARqg"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface truncate group-hover:text-primary transition-colors">Glow Beauty Studio</h4>
+<div class="flex items-center text-outline text-xs mt-1 space-x-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Zamalek, Cairo</span>
+</div>
+<div class="flex items-center mt-2 space-x-1">
+<span class="material-symbols-outlined text-amber-400 text-[14px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-medium text-on-surface">4.7</span>
+<span class="text-xs text-outline">(89 reviews)</span>
+</div>
+<div class="flex flex-wrap gap-2 mt-md">
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] text-on-surface-variant">Facial</span>
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] text-on-surface-variant">Nails</span>
+</div>
+<div class="mt-auto pt-md">
+<div class="border-t border-outline-variant/30 pb-md"></div>
+<div class="flex items-center justify-between">
+<span class="font-data-mono text-data-mono text-on-surface-variant">From EGP 150</span>
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded-md text-sm font-medium hover:bg-primary-fixed-variant transition-colors flex items-center space-x-1">
+<span>Book</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-xl shadow-card-subtle border border-outline-variant/50 overflow-hidden hover:shadow-card-lifted hover:-translate-y-0.5 hover:border-primary-fixed-dim transition-all duration-200 group relative flex flex-col h-full">
+<div class="h-48 w-full bg-gradient-to-br from-emerald-400 to-green-600 relative">
+<div class="absolute top-sm right-sm bg-surface text-on-surface px-2 py-1 rounded-full text-[10px] font-bold tracking-wide shadow-sm uppercase">Fitness</div>
+</div>
+<div class="relative px-md pt-8 pb-md flex-grow flex flex-col">
+<div class="absolute -top-6 left-md h-12 w-12 rounded-full border-2 border-surface bg-surface overflow-hidden flex items-center justify-center shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A tightly framed shot of a matte black kettlebell resting on a textured rubber gym floor, illuminated by dramatic, high-contrast spotlighting. The scene conveys intensity, premium fitness, and modern athletic design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBucZNDcHuFQIJO0XT9FaQN6TZnImaDU7ns3DQtH3O-XuBODHT1hTRCZy6UAN0CZM61_zTbv6N1ECRkpsY6L4f95klWQTAiDOewGO6RIbvP_ahcZvTCs-0M9DrZbKuh7967g5uvG9n9yL1z0zFbRpcAj_OwnazbNbcIDM3uPlnoS2POARwy04Yv8-h7rdXd7TfEvcEGO3DyRKcF1ducucQ_QXRCa6Z2iKLKFthfftbRh-CIi3-p0zI9ZcNKEx79wkZDDSryuybaQ"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface truncate group-hover:text-primary transition-colors">FitZone Coaching</h4>
+<div class="flex items-center text-outline text-xs mt-1 space-x-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Heliopolis, Cairo</span>
+</div>
+<div class="flex items-center mt-2 space-x-1">
+<span class="material-symbols-outlined text-amber-400 text-[14px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-medium text-on-surface">4.9</span>
+<span class="text-xs text-outline">(201 reviews)</span>
+</div>
+<div class="flex flex-wrap gap-2 mt-md">
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] text-on-surface-variant">Training</span>
+<span class="bg-surface-container px-2 py-1 rounded text-[10px] text-on-surface-variant">HIIT</span>
+</div>
+<div class="mt-auto pt-md">
+<div class="border-t border-outline-variant/30 pb-md"></div>
+<div class="flex items-center justify-between">
+<span class="font-data-mono text-data-mono text-on-surface-variant">From EGP 300</span>
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded-md text-sm font-medium hover:bg-primary-fixed-variant transition-colors flex items-center space-x-1">
+<span>Book</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-xl flex justify-center items-center space-x-md">
+<button class="px-4 py-2 border border-outline-variant rounded-md text-sm font-medium text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-50">← Previous</button>
+<span class="text-sm text-outline">Page 1 of 26</span>
+<button class="px-4 py-2 border border-outline-variant rounded-md text-sm font-medium text-on-surface-variant hover:bg-surface-container transition-colors">Next →</button>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest w-full py-xl border-t border-outline-variant mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-[1440px] mx-auto">
+<div class="col-span-1 md:col-span-1 flex flex-col space-y-md">
+<span class="text-headline-md font-headline-md font-bold text-on-surface dark:text-on-surface-variant">BookFlow</span>
+<span class="font-body-sm text-body-sm text-on-surface dark:text-on-surface-variant">© 2024 BookFlow Inc. All rights reserved.</span>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-md md:justify-end items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm" href="#">Careers</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm" href="#">Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

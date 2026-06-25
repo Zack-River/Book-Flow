@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookFlow - Every appointment, perfectly placed.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e3e2df",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c5c6ce",
+                        "on-surface": "#1b1c1a",
+                        "outline-variant": "#c3c6d7",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-fixed": "#191b22",
+                        "tertiary-fixed": "#6ffbbe",
+                        "inverse-primary": "#b4c5ff",
+                        "background": "#faf9f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e9e8e5",
+                        "outline": "#737686",
+                        "on-tertiary-container": "#bdffdb",
+                        "surface-tint": "#0053db",
+                        "tertiary-container": "#007d55",
+                        "on-secondary-container": "#63646c",
+                        "on-primary-fixed": "#00174b",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dbdad7",
+                        "secondary": "#5d5e65",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1b1c1a",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-bright": "#faf9f6",
+                        "on-primary-container": "#eeefff",
+                        "inverse-on-surface": "#f2f1ee",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#434655",
+                        "primary": "#004ac6",
+                        "surface": "#faf9f6",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#efeeeb",
+                        "surface-container-low": "#f4f3f0",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "inverse-surface": "#2f312f",
+                        "tertiary": "#006242",
+                        "surface-variant": "#e3e2df",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "secondary-fixed": "#e2e2eb",
+                        "secondary-container": "#e2e2eb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin-desktop": "48px",
+                        "sm": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "data-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    },
+                    "boxShadow": {
+                        "card": "0 2px 4px rgba(15, 17, 23, 0.04)",
+                        "lifted": "0 8px 16px rgba(15, 17, 23, 0.08)",
+                        "modal": "0 20px 40px rgba(15, 17, 23, 0.12)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .calendar-texture {
+            background-image: repeating-linear-gradient(transparent, transparent 7px, #e3e2df 8px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 3s;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased pt-16">
+<!-- TopNavBar Component -->
+<nav class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm fixed top-0 w-full z-50">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-[1440px] mx-auto">
+<div class="flex items-center gap-gutter">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">BookFlow</a>
+<div class="hidden md:flex gap-md ml-xl">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Features</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Providers</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Pricing</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary px-4 py-2 transition-colors duration-200" href="#">Log In</a>
+<a class="bg-primary text-on-primary font-body-md text-body-md px-4 py-2 rounded-lg hover:bg-[#003ea8] transition-colors duration-200 active:scale-95" href="#">Sign Up</a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl md:py-3xl flex flex-col md:flex-row items-center gap-2xl">
+<!-- Left Column (55%) -->
+<div class="w-full md:w-[55%] flex flex-col gap-lg">
+<div>
+<span class="inline-block bg-surface-container border border-outline-variant rounded-full px-3 py-1 font-label-caps text-label-caps text-on-surface-variant mb-md">
+                    Booking infrastructure for service businesses
+                </span>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-md">Every appointment,<br/>perfectly placed.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    The modern scheduling engine designed for clinics, salons, fitness studios, and consulting practices. Seamless booking for clients, powerful management for you.
+                </p>
+</div>
+<div class="flex flex-wrap gap-md mt-sm">
+<a class="bg-primary text-on-primary font-body-md text-body-md px-6 py-3 rounded-lg hover:bg-[#003ea8] transition-all duration-200 active:scale-95 shadow-sm inline-flex items-center gap-2" href="#">
+                    Start booking free
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</a>
+<a class="border border-outline-variant bg-surface text-on-surface font-body-md text-body-md px-6 py-3 rounded-lg hover:bg-surface-container transition-all duration-200 active:scale-95 inline-flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">play_circle</span>
+                    Watch demo
+                </a>
+</div>
+<div class="mt-2xl border-t border-outline-variant/50 pt-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-md">TRUSTED BY INNOVATIVE TEAMS</p>
+<div class="flex flex-wrap gap-xl items-center opacity-60 grayscale">
+<!-- Placeholder logos using typography for demonstration -->
+<span class="font-headline-md font-bold">AcmeCorp</span>
+<span class="font-headline-md font-bold">GlobalTech</span>
+<span class="font-headline-md font-bold">NovaHealth</span>
+<span class="font-headline-md font-bold">ZenStudio</span>
+</div>
+</div>
+</div>
+<!-- Right Column (45%) -->
+<div class="w-full md:w-[45%] h-[500px] relative rounded-2xl border border-outline-variant/30 overflow-hidden bg-surface-container-lowest">
+<!-- Calendar Texture Background -->
+<div class="absolute inset-0 calendar-texture opacity-50"></div>
+<!-- Graphic Container -->
+<div class="absolute inset-0 flex items-center justify-center p-lg">
+<!-- Background Mini Calendar -->
+<div class="absolute right-0 top-1/4 w-64 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-card p-4 opacity-80 transform rotate-3 animate-float-delayed">
+<div class="flex justify-between items-center mb-4 border-b border-outline-variant pb-2">
+<span class="font-body-sm font-semibold">June 2024</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center font-label-caps text-[10px] text-on-surface-variant mb-2">
+<div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center font-data-mono text-[12px]">
+<div class="text-secondary-fixed-dim">26</div>
+<div class="text-secondary-fixed-dim">27</div>
+<div class="text-secondary-fixed-dim">28</div>
+<div class="text-secondary-fixed-dim">29</div>
+<div class="text-secondary-fixed-dim">30</div>
+<div class="text-secondary-fixed-dim">31</div>
+<div>1</div>
+<!-- ... more days ... -->
+<div>23</div><div>24</div><div>25</div><div>26</div>
+<div class="bg-primary text-on-primary rounded-full w-6 h-6 mx-auto flex items-center justify-center">27</div>
+<div>28</div><div>29</div>
+</div>
+</div>
+<!-- Main Floating Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lifted w-80 p-6 z-10 animate-float">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">SA</div>
+<div>
+<h3 class="font-headline-md text-base">Dr. Sarah Ahmed</h3>
+<p class="font-body-sm text-on-surface-variant">Dental Checkup</p>
+</div>
+</div>
+<span class="bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-caps px-2 py-1 rounded text-[10px]">CONFIRMED</span>
+</div>
+<div class="bg-surface-container rounded-lg p-4 mb-4 border border-outline-variant/50">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="font-data-mono text-sm text-on-surface">Thu 27 Jun</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-data-mono text-sm text-on-surface">10:30 AM - 11:30 AM</span>
+</div>
+</div>
+<button class="w-full border border-outline-variant font-body-sm py-2 rounded-lg hover:bg-surface-container transition-colors">Reschedule</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Section -->
+<section class="py-24 bg-surface-container-lowest border-y border-outline-variant/30">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-center mb-xl">Built for any service business</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Category Cards -->
+<div class="bg-primary/5 border-2 border-primary/20 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card transition-shadow cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">medical_services</span>
+<span class="font-headline-md text-base text-primary">Medical</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card hover:border-outline-variant transition-all cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-on-surface transition-colors">dentistry</span>
+<span class="font-headline-md text-base text-on-surface-variant group-hover:text-on-surface transition-colors">Dental</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card hover:border-outline-variant transition-all cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-on-surface transition-colors">face_retouching_natural</span>
+<span class="font-headline-md text-base text-on-surface-variant group-hover:text-on-surface transition-colors">Beauty</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card hover:border-outline-variant transition-all cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-on-surface transition-colors">fitness_center</span>
+<span class="font-headline-md text-base text-on-surface-variant group-hover:text-on-surface transition-colors">Fitness</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card hover:border-outline-variant transition-all cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-on-surface transition-colors">construction</span>
+<span class="font-headline-md text-base text-on-surface-variant group-hover:text-on-surface transition-colors">Consulting</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card hover:border-outline-variant transition-all cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-on-surface transition-colors">school</span>
+<span class="font-headline-md text-base text-on-surface-variant group-hover:text-on-surface transition-colors">Education</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card hover:border-outline-variant transition-all cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-on-surface transition-colors">home_repair_service</span>
+<span class="font-headline-md text-base text-on-surface-variant group-hover:text-on-surface transition-colors">Home Services</span>
+</div>
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex flex-col items-center justify-center gap-md hover:shadow-card hover:border-outline-variant transition-all cursor-pointer text-center group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-on-surface transition-colors">spa</span>
+<span class="font-headline-md text-base text-on-surface-variant group-hover:text-on-surface transition-colors">Wellness</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Bar -->
+<section class="bg-inverse-surface py-16 text-inverse-on-surface">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-2 md:grid-cols-4 gap-xl text-center">
+<div class="flex flex-col items-center gap-sm">
+<span class="font-data-mono text-3xl md:text-4xl text-inverse-primary font-bold">12k+</span>
+<span class="font-label-caps text-label-caps opacity-80">Bookings / Month</span>
+</div>
+<div class="flex flex-col items-center gap-sm">
+<span class="font-data-mono text-3xl md:text-4xl text-inverse-primary font-bold">500+</span>
+<span class="font-label-caps text-label-caps opacity-80">Active Providers</span>
+</div>
+<div class="flex flex-col items-center gap-sm">
+<span class="font-data-mono text-3xl md:text-4xl text-inverse-primary font-bold">99.9%</span>
+<span class="font-label-caps text-label-caps opacity-80">Uptime</span>
+</div>
+<div class="flex flex-col items-center gap-sm">
+<span class="font-data-mono text-3xl md:text-4xl text-inverse-primary font-bold">0</span>
+<span class="font-label-caps text-label-caps opacity-80">Missed Appointments</span>
+</div>
+</div>
+</section>
+<!-- Footer Component -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest w-full py-xl border-t border-outline-variant flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-[1440px] mx-auto">
+<div class="flex flex-col gap-sm">
+<a class="text-headline-md font-headline-md font-bold text-on-surface dark:text-on-surface-variant" href="#">BookFlow</a>
+<p class="font-body-sm text-body-sm text-on-surface dark:text-on-surface-variant mt-sm">© 2024 BookFlow Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Company</h4>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Legal</h4>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Help</h4>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

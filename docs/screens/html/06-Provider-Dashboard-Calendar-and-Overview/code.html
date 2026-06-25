@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Provider Dashboard - Triptych Presentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#0053db", "on-tertiary": "#ffffff", "inverse-primary": "#b4c5ff", "tertiary-fixed-dim": "#4edea3", "surface-container-high": "#e9e8e5", "error": "#ba1a1a", "on-primary-container": "#eeefff", "inverse-on-surface": "#f2f1ee", "tertiary": "#006242", "surface-bright": "#faf9f6", "on-secondary-fixed": "#191b22", "on-surface": "#1b1c1a", "on-primary": "#ffffff", "surface-variant": "#e3e2df", "primary-container": "#2563eb", "outline": "#737686", "on-background": "#1b1c1a", "secondary-fixed-dim": "#c5c6ce", "primary-fixed-dim": "#b4c5ff", "on-error": "#ffffff", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d7", "on-tertiary-fixed-variant": "#005236", "on-tertiary-fixed": "#002113", "on-error-container": "#93000a", "surface": "#faf9f6", "surface-container": "#efeeeb", "on-secondary-container": "#63646c", "primary": "#004ac6", "tertiary-container": "#007d55", "inverse-surface": "#2f312f", "on-primary-fixed": "#00174b", "error-container": "#ffdad6", "secondary-container": "#e2e2eb", "on-tertiary-container": "#bdffdb", "on-primary-fixed-variant": "#003ea8", "on-surface-variant": "#434655", "surface-container-low": "#f4f3f0", "background": "#faf9f6", "primary-fixed": "#dbe1ff", "surface-container-highest": "#e3e2df", "secondary": "#5d5e65", "on-secondary-fixed-variant": "#45464e", "tertiary-fixed": "#6ffbbe", "secondary-fixed": "#e2e2eb", "on-secondary": "#ffffff", "surface-dim": "#dbdad7"
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    spacing: { "gutter": "24px", "base": "4px", "xl": "32px", "3xl": "64px", "margin-mobile": "16px", "lg": "24px", "2xl": "48px", "xs": "4px", "md": "16px", "sm": "8px", "margin-desktop": "48px" },
+                    fontFamily: {
+                        "label-caps": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "data-mono": ["JetBrains Mono"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "data-mono": ["14px", { lineHeight: "1", letterSpacing: "-0.01em", fontWeight: "500" }],
+                        "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "headline-md": ["20px", { lineHeight: "1.4", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .shadow-card { box-shadow: 0 2px 4px rgba(15, 17, 23, 0.04); }
+        .shadow-lifted { box-shadow: 0 8px 16px rgba(15, 17, 23, 0.08); }
+        .shadow-modal { box-shadow: 0 20px 40px rgba(15, 17, 23, 0.12); }
+        .calendar-texture { background-image: repeating-linear-gradient(to bottom, transparent, transparent 31px, #e3e2df 32px); background-size: 100% 32px; }
+        .blocked-pattern { background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #efeeeb 10px, #efeeeb 20px); }
+    </style>
+</head>
+<body class="bg-surface-dim h-screen w-full overflow-hidden flex items-center justify-center font-body-md text-on-surface">
+<!-- Presentation Container -->
+<div class="flex flex-row gap-2xl overflow-x-auto w-full h-[921px] px-2xl py-lg items-start" style="scroll-snap-type: x mandatory;">
+<!-- ========================================== -->
+<!-- PANEL A: OVERVIEW PAGE -->
+<!-- ========================================== -->
+<div class="min-w-[1280px] w-[1280px] h-full bg-surface shadow-modal rounded-xl overflow-hidden flex flex-row shrink-0 border border-outline-variant" style="scroll-snap-align: center;">
+<!-- SideNavBar (JSON Configured - Active: Overview) -->
+<nav class="h-full w-64 flex flex-col bg-surface-container-low border-r border-outline-variant py-lg shrink-0">
+<div class="px-md mb-xl flex flex-col gap-sm">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md font-bold overflow-hidden">
+<img alt="Provider profile picture" class="object-cover w-full h-full" data-alt="A professional headshot of a female doctor in a bright modern clinic with warm lighting. She is wearing a subtle stethoscope, exuding confidence and approachability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm0eYQ1SwatgZdNH_BzybPiAXu1jpSsW_bDODGPAQm-0rwsx9GT_xlAH42nkAM_4PrV9vwfuIQGo6P7DxsLRHdDRGXo04khUPqTueer-WqFXtUnMDtdYOFtRl6XYoKqn1T1LvDhBCtAtHvLvdAdGlDnPcMTrknA17MQu8_Gzb12phpH2e64NrayQTG-vw7zvtQ-ovVWULWKVZcna60PdIogOPfWpQoHS4a9uVBTFPo7suGsFPuAQzlvW4H3Kxzgn88EZ5ofXLzoQ"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Provider Portal</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your schedule</p>
+</div>
+</div>
+<div class="px-md mb-lg">
+<button class="w-full bg-primary text-on-primary h-[40px] rounded-lg font-body-sm font-medium hover:bg-on-primary-fixed-variant transition-colors duration-200 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">add</span> New Appointment
+                    </button>
+</div>
+<ul class="flex flex-col flex-1 px-sm gap-xs">
+<!-- Active Item -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold bg-surface-container-high transition-transform duration-200 scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+</li>
+<!-- Inactive Items -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps">Calendar</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-caps text-label-caps">Availability</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-caps text-label-caps">Bookings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-caps text-label-caps">Revenue</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</li>
+</ul>
+<ul class="flex flex-col px-sm gap-xs mt-auto">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-caps text-label-caps">Help Center</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col bg-surface overflow-y-auto">
+<!-- Header -->
+<header class="flex justify-between items-end px-3xl py-xl border-b border-outline-variant">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Good morning, Dr. Sarah 👋</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Thursday, 27 June 2025</p>
+</div>
+</header>
+<div class="p-3xl flex flex-col gap-xl">
+<!-- Stats Grid -->
+<div class="grid grid-cols-4 gap-gutter">
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-card flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">BOOKINGS TODAY</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">8</span>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-card flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">REVENUE</span>
+<div class="flex items-baseline gap-sm">
+<span class="font-headline-lg text-headline-lg text-on-surface">EGP 2,100</span>
+<span class="font-body-sm text-body-sm text-tertiary font-medium">+450 vs yesterday</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-card flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">PENDING REQUESTS</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">3</span>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-card flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">AVERAGE RATING</span>
+<span class="font-headline-lg text-headline-lg text-on-surface flex items-center gap-xs">4.9 <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span></span>
+</div>
+</div>
+<!-- Today's Schedule -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-card overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-on-surface">Today's Schedule</h3>
+</div>
+<ul class="flex flex-col divide-y divide-outline-variant">
+<!-- Row 1 -->
+<li class="flex items-center justify-between px-lg py-md hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md">L</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Layla M.</span>
+</div>
+<div class="flex items-center gap-lg">
+<span class="font-data-mono text-data-mono text-on-surface-variant">09:00 - 09:30</span>
+<span class="font-label-caps text-label-caps bg-tertiary/10 text-tertiary border border-tertiary/20 px-sm py-xs rounded-full">CONFIRMED</span>
+</div>
+</li>
+<!-- Row 2 -->
+<li class="flex items-center justify-between px-lg py-md hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-headline-md">O</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Omar F.</span>
+</div>
+<div class="flex items-center gap-lg">
+<span class="font-data-mono text-data-mono text-on-surface-variant">10:15 - 11:00</span>
+<span class="font-label-caps text-label-caps bg-secondary/10 text-secondary border border-secondary/20 px-sm py-xs rounded-full">PENDING</span>
+</div>
+</li>
+<!-- Row 3 -->
+<li class="flex items-center justify-between px-lg py-md hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md">S</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Sara K.</span>
+</div>
+<div class="flex items-center gap-lg">
+<span class="font-data-mono text-data-mono text-on-surface-variant">11:30 - 12:00</span>
+<span class="font-label-caps text-label-caps bg-tertiary/10 text-tertiary border border-tertiary/20 px-sm py-xs rounded-full">CONFIRMED</span>
+</div>
+</li>
+<!-- Row 4 -->
+<li class="flex items-center justify-between px-lg py-md hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md">A</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Ahmed N.</span>
+</div>
+<div class="flex items-center gap-lg">
+<span class="font-data-mono text-data-mono text-on-surface-variant">14:00 - 15:00</span>
+<span class="font-label-caps text-label-caps bg-tertiary/10 text-tertiary border border-tertiary/20 px-sm py-xs rounded-full">CONFIRMED</span>
+</div>
+</li>
+<!-- Row 5 -->
+<li class="flex items-center justify-between px-lg py-md hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-headline-md">N</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Nour H.</span>
+</div>
+<div class="flex items-center gap-lg">
+<span class="font-data-mono text-data-mono text-on-surface-variant">16:30 - 17:15</span>
+<span class="font-label-caps text-label-caps bg-secondary/10 text-secondary border border-secondary/20 px-sm py-xs rounded-full">PENDING</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</main>
+</div>
+<!-- ========================================== -->
+<!-- PANEL B: CALENDAR PAGE -->
+<!-- ========================================== -->
+<div class="min-w-[1280px] w-[1280px] h-full bg-surface shadow-modal rounded-xl overflow-hidden flex flex-row shrink-0 border border-outline-variant" style="scroll-snap-align: center;">
+<!-- SideNavBar (JSON Configured - Active: Calendar) -->
+<nav class="h-full w-64 flex flex-col bg-surface-container-low border-r border-outline-variant py-lg shrink-0">
+<div class="px-md mb-xl flex flex-col gap-sm">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md font-bold overflow-hidden">
+<img alt="Provider profile picture" class="object-cover w-full h-full" data-alt="A professional headshot of a female doctor in a bright modern clinic with warm lighting. She is wearing a subtle stethoscope, exuding confidence and approachability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYSjFIloDeNtbh3fIhV97F3jehSCz6iTN7m_YnxvKC3vVqpCqcwS-lxKz3wBZqWLJ929BATw8Qv4UWbEvuU6Y-ZrqWNC8QPg3qQAgG7WoXQcNC7lE8qspleXClSoxYgPwy8xA0dLUtjSNuMdXs7e7deKebQE4Q0BT5RD5G4UUNZaGPT6xOUEfkEHzL3LRwri6AavVucOMAuoGsfYHE33uiI2tcM0LhMOh8uL3sr72wkgpc9dT_dT6SexfE9jcUG18jX-91RaFUQQ"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Provider Portal</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your schedule</p>
+</div>
+</div>
+<div class="px-md mb-lg">
+<button class="w-full bg-primary text-on-primary h-[40px] rounded-lg font-body-sm font-medium hover:bg-on-primary-fixed-variant transition-colors duration-200 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">add</span> New Appointment
+                    </button>
+</div>
+<ul class="flex flex-col flex-1 px-sm gap-xs">
+<!-- Inactive Items -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+</li>
+<!-- Active Item -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold bg-surface-container-high border-r-2 border-primary transition-transform duration-200 scale-[0.98]" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps">Calendar</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-caps text-label-caps">Availability</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-caps text-label-caps">Bookings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-caps text-label-caps">Revenue</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</li>
+</ul>
+<ul class="flex flex-col px-sm gap-xs mt-auto">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-caps text-label-caps">Help Center</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col bg-surface overflow-hidden">
+<!-- Header -->
+<header class="flex justify-between items-center px-3xl py-xl border-b border-outline-variant bg-surface-bright shrink-0">
+<div class="flex items-center gap-md">
+<button class="p-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">chevron_left</span></button>
+<h1 class="font-headline-md text-headline-md text-on-surface min-w-[140px] text-center">June 2025</h1>
+<button class="p-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex bg-surface-container-low p-base rounded-lg border border-outline-variant">
+<button class="px-md py-xs font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface rounded">Day</button>
+<button class="px-md py-xs font-label-caps text-label-caps bg-surface text-on-surface rounded shadow-sm border border-outline-variant">Week</button>
+<button class="px-md py-xs font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface rounded">Month</button>
+</div>
+<button class="border border-outline-variant text-on-surface h-[40px] px-md rounded-lg font-body-sm font-medium hover:bg-surface-container transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span> Add availability
+                        </button>
+</div>
+</header>
+<!-- Calendar Grid Area -->
+<div class="flex-1 flex flex-col overflow-hidden">
+<!-- Days Header -->
+<div class="flex border-b border-outline-variant shrink-0 bg-surface">
+<div class="w-20 shrink-0 border-r border-outline-variant"></div> <!-- Time column spacer -->
+<div class="flex-1 grid grid-cols-7 divide-x divide-outline-variant">
+<div class="py-sm text-center"><span class="font-label-caps text-label-caps text-on-surface-variant">MON 23</span></div>
+<div class="py-sm text-center"><span class="font-label-caps text-label-caps text-on-surface-variant">TUE 24</span></div>
+<div class="py-sm text-center bg-primary-fixed/30 border-b-2 border-primary"><span class="font-label-caps text-label-caps text-primary">WED 25</span></div>
+<div class="py-sm text-center"><span class="font-label-caps text-label-caps text-on-surface-variant">THU 26</span></div>
+<div class="py-sm text-center"><span class="font-label-caps text-label-caps text-on-surface-variant">FRI 27</span></div>
+<div class="py-sm text-center"><span class="font-label-caps text-label-caps text-on-surface-variant">SAT 28</span></div>
+<div class="py-sm text-center"><span class="font-label-caps text-label-caps text-on-surface-variant">SUN 29</span></div>
+</div>
+</div>
+<!-- Scrollable Grid -->
+<div class="flex-1 flex overflow-y-auto calendar-texture relative">
+<!-- Time Column -->
+<div class="w-20 shrink-0 border-r border-outline-variant bg-surface flex flex-col pt-sm">
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">08:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">09:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">10:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">11:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">12:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">13:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">14:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">15:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">16:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">17:00</span></div>
+<div class="h-16 relative"><span class="absolute -top-3 right-sm font-data-mono text-data-mono text-on-surface-variant">18:00</span></div>
+</div>
+<!-- Days Columns -->
+<div class="flex-1 grid grid-cols-7 divide-x divide-outline-variant relative h-[704px]"> <!-- 11 hours * 64px = 704px -->
+<!-- Mon -->
+<div class="relative">
+<div class="absolute top-[64px] w-[90%] left-[5%] h-[32px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">09:00 - Layla</span>
+</div>
+<div class="absolute top-[144px] w-[90%] left-[5%] h-[48px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">10:15 - Omar</span>
+</div>
+</div>
+<!-- Tue -->
+<div class="relative">
+<div class="absolute top-[224px] w-[90%] left-[5%] h-[32px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">11:30 - Sara</span>
+</div>
+</div>
+<!-- Wed (TODAY) -->
+<div class="relative bg-primary-fixed/10">
+<div class="absolute top-[384px] w-[90%] left-[5%] h-[64px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">14:00 - Ahmed</span>
+</div>
+<div class="absolute top-[544px] w-[90%] left-[5%] h-[48px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">16:30 - Nour</span>
+</div>
+<!-- Current Time Line (14:30) -->
+<div class="absolute top-[416px] left-0 w-full border-t-2 border-primary z-10 flex items-center">
+<div class="w-2 h-2 rounded-full bg-primary -ml-1"></div>
+</div>
+</div>
+<!-- Thu -->
+<div class="relative">
+<div class="absolute top-[64px] w-[90%] left-[5%] h-[32px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">09:00 - Layla M.</span>
+</div>
+</div>
+<!-- Fri (BLOCKED) -->
+<div class="relative blocked-pattern opacity-50"></div>
+<!-- Sat -->
+<div class="relative">
+<div class="absolute top-[192px] w-[90%] left-[5%] h-[64px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">11:00 - K.</span>
+</div>
+<div class="absolute top-[256px] w-[90%] left-[5%] h-[64px] bg-primary-container/80 border border-primary text-on-primary-fixed rounded p-xs overflow-hidden shadow-card hover:shadow-lifted cursor-pointer transition-shadow">
+<span class="font-label-caps text-[10px] leading-tight block">12:00 - R.</span>
+</div>
+</div>
+<!-- Sun -->
+<div class="relative"></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

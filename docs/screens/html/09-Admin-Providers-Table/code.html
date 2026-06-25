@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookFlow - Providers Management</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS Setup -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2f312f",
+                    "on-surface-variant": "#434655",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#191b22",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#faf9f6",
+                    "tertiary": "#006242",
+                    "surface-tint": "#0053db",
+                    "background": "#faf9f6",
+                    "secondary": "#5d5e65",
+                    "surface-container-high": "#e9e8e5",
+                    "surface-variant": "#e3e2df",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container": "#efeeeb",
+                    "secondary-container": "#e2e2eb",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "outline": "#737686",
+                    "tertiary-fixed": "#6ffbbe",
+                    "primary": "#004ac6",
+                    "on-tertiary-fixed": "#002113",
+                    "on-background": "#1b1c1a",
+                    "inverse-primary": "#b4c5ff",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ee",
+                    "surface-bright": "#faf9f6",
+                    "secondary-fixed": "#e2e2eb",
+                    "primary-container": "#2563eb",
+                    "surface-container-low": "#f4f3f0",
+                    "on-secondary-fixed-variant": "#45464e",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e3e2df",
+                    "tertiary-container": "#007d55",
+                    "on-secondary-container": "#63646c",
+                    "on-primary-container": "#eeefff",
+                    "on-tertiary-container": "#bdffdb",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#c5c6ce",
+                    "outline-variant": "#c3c6d7",
+                    "on-surface": "#1b1c1a",
+                    "on-primary-fixed": "#00174b",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dbdad7",
+                    "warm-bg": "#F7F6F3",
+                    "warm-border": "#E8E6E1",
+                    "status-green": "#22C55E",
+                    "status-amber": "#F59E0B",
+                    "status-red": "#EF4444",
+                    "pending-bg": "#FFFBEB"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "3xl": "64px",
+                    "md": "16px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "margin-desktop": "48px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "2xl": "48px",
+                    "xs": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "data-mono": ["JetBrains Mono", "monospace"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-sm": ["Inter", "sans-serif"],
+                    "label-caps": ["Inter", "sans-serif"],
+                    "display-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-lg": ["Inter", "sans-serif"]
+            },
+            "boxShadow": {
+                "card": "0 2px 4px rgba(15, 17, 23, 0.04)",
+                "lifted": "0 8px 16px rgba(15, 17, 23, 0.08)",
+                "modal": "0 20px 40px rgba(15, 17, 23, 0.12)"
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Checkbox */
+        .warm-checkbox {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid theme('colors.outline-variant');
+            border-radius: 4px;
+            background-color: theme('colors.surface-container-lowest');
+            cursor: pointer;
+            position: relative;
+        }
+        .warm-checkbox:checked {
+            background-color: theme('colors.primary');
+            border-color: theme('colors.primary');
+        }
+        .warm-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        /* Modal Overlay Background */
+        .modal-overlay {
+            background-color: rgba(15, 17, 23, 0.4);
+            backdrop-filter: blur(2px);
+        }
+    </style>
+</head>
+<body class="bg-warm-bg text-on-surface font-body-md min-h-screen flex">
+<!-- Top Navigation Area (Mobile only) -->
+<div class="md:hidden fixed top-0 w-full h-16 bg-surface-container-lowest border-b border-warm-border z-40 flex items-center px-margin-mobile justify-between">
+<div class="font-headline-md text-headline-md font-bold text-primary">BookFlow</div>
+<span class="material-symbols-outlined cursor-pointer text-on-surface">menu</span>
+</div>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full fixed left-0 top-0 w-64 bg-[#0F1117] border-r border-outline-variant z-50 py-xl px-md shadow-sm">
+<div class="flex items-center gap-sm px-sm mb-xl">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-bold font-headline-md">B</div>
+<div class="font-headline-md text-headline-md font-bold text-white">BookFlow</div>
+</div>
+<div class="flex flex-col gap-sm flex-grow">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Active Nav Item -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg relative" href="#">
+<!-- Blue Left Border Indicator for Dark Nav -->
+<div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-3/4 bg-blue-400 rounded-r"></div>
+<span class="material-symbols-outlined filled text-blue-400">person_check</span>
+<span class="text-white font-medium">Service Providers</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span>Bookings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Revenue</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</a>
+</div>
+<div class="mt-xl pt-lg border-t border-gray-800 flex items-center gap-md px-sm">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A small circular avatar showing a professional looking administrator in a modern office setting. High quality photography, well lit, neutral background, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0JxHPGDy0D_Y8U2iok3tBdwe-pCv_EH2CGKTTrM8qrlRa9XtvGSHhGtnMusUpKcj-gAmfG7pqgh4q7PwQ4Kdn53vYCpRwg8-SfLViv-0BJ0lICCKomidjbWRJX-c0XCrU0Kf4o2dEnGK3jMUBsqNEnvn4okVMxpJtFtGYcblp_SJQkIYVDItfDBwg-9ENAnUXWuiay2hjb9z6IY4TjrraruPJNMBBAmeoH7BlG4icmndTU-6Fo1cuBNxQMeaARlw0SotCFX9og"/>
+<div class="flex flex-col">
+<span class="text-white font-medium text-sm">BookFlow Admin</span>
+<span class="text-gray-400 text-xs">Management Console</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="w-full md:ml-64 pt-20 md:pt-lg px-margin-mobile md:px-margin-desktop pb-2xl max-w-[1440px] mx-auto relative">
+<!-- Header Section -->
+<header class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface mb-sm">Providers</h1>
+<div class="flex items-center gap-sm text-sm text-on-surface-variant">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-status-green"></div>
+<span class="font-medium text-on-surface">412 Active</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-status-amber"></div>
+<span class="font-medium text-on-surface">8 Pending</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-status-red"></div>
+<span class="text-on-surface-variant">0 Inactive</span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-white h-10 px-lg rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center gap-sm">
+<span class="material-symbols-outlined text-sm">add</span>
+                Add Provider
+            </button>
+</header>
+<!-- Filter Bar -->
+<section class="bg-surface-container-lowest rounded-xl p-md border border-warm-border shadow-card mb-lg flex flex-col lg:flex-row gap-md items-center justify-between">
+<div class="flex-grow w-full lg:w-auto relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 transform -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-11 pl-10 pr-md bg-surface-container-low border border-warm-border rounded-lg text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary-fixed focus:outline-none transition-all duration-200" placeholder="Search providers..." type="text"/>
+</div>
+<div class="flex flex-wrap lg:flex-nowrap gap-sm w-full lg:w-auto">
+<div class="relative min-w-[160px] flex-1 lg:flex-none">
+<select class="w-full h-11 pl-md pr-10 bg-surface-container-low border border-warm-border rounded-lg text-on-surface appearance-none focus:border-primary focus:outline-none cursor-pointer">
+<option>All Categories</option>
+<option>Medical</option>
+<option>Beauty</option>
+<option>Fitness</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 transform -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative min-w-[140px] flex-1 lg:flex-none">
+<select class="w-full h-11 pl-md pr-10 bg-surface-container-low border border-warm-border rounded-lg text-on-surface appearance-none focus:border-primary focus:outline-none cursor-pointer">
+<option>All Status</option>
+<option>Active</option>
+<option>Pending</option>
+<option>Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 transform -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative min-w-[140px] flex-1 lg:flex-none">
+<select class="w-full h-11 pl-md pr-10 bg-surface-container-low border border-warm-border rounded-lg text-on-surface appearance-none focus:border-primary focus:outline-none cursor-pointer font-medium">
+<option>Revenue ↓</option>
+<option>Bookings ↓</option>
+<option>Name A-Z</option>
+<option>Rating ↓</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 transform -translate-y-1/2 text-outline pointer-events-none">swap_vert</span>
+</div>
+</div>
+</section>
+<!-- Tabs -->
+<div class="flex gap-lg border-b border-warm-border mb-md overflow-x-auto hide-scrollbar">
+<button class="pb-sm border-b-2 border-primary text-primary font-medium px-xs flex items-center gap-xs whitespace-nowrap">
+                All <span class="bg-primary-container text-on-primary-container text-xs py-0.5 px-2 rounded-full">420</span>
+</button>
+<button class="pb-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-medium px-xs transition-colors whitespace-nowrap">
+                Active <span class="text-xs text-outline ml-1">(412)</span>
+</button>
+<button class="pb-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-medium px-xs flex items-center gap-xs transition-colors whitespace-nowrap relative">
+                Pending <span class="text-xs text-outline">(8)</span>
+<span class="w-2 h-2 rounded-full bg-status-amber absolute top-0 -right-2"></span>
+</button>
+<button class="pb-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-medium px-xs transition-colors whitespace-nowrap">
+                Inactive <span class="text-xs text-outline ml-1">(0)</span>
+</button>
+</div>
+<!-- Providers Table Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-warm-border shadow-card overflow-hidden">
+<div class="overflow-x-auto">
+<div class="absolute inset-0 bg-white/40 z-10 hidden" id="row-overlay"></div><table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="border-b border-warm-border bg-surface-container-low text-xs font-semibold text-on-surface-variant uppercase tracking-wider">
+<th class="py-sm px-md w-12"><input class="warm-checkbox" type="checkbox"/></th>
+<th class="py-sm px-md">Provider</th>
+<th class="py-sm px-md">Category</th>
+<th class="py-sm px-md">Location</th>
+<th class="py-sm px-md text-right">Bookings</th>
+<th class="py-sm px-md text-right">Revenue</th>
+<th class="py-sm px-md text-center">Rating</th>
+<th class="py-sm px-md text-center">Status</th>
+<th class="py-sm px-md text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-warm-border">
+<!-- Active Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-md"><input class="warm-checkbox" type="checkbox"/></td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<img class="w-10 h-10 rounded-full border border-warm-border object-cover" data-alt="A clean, modern logo for a dental clinic called SmileCare. Minimalist tooth icon with a blue gradient background, high resolution, web format." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGyLqIlGacDL7_FRXyvpyl5EPzANZquMnuol5XUsjMEjWus3zaNXKBpRc6PAgzt0bc3JCfqswOL9KLWL7tuyaqVqHeQ7RmkAsxm-RSEC9MZfmp9EJVYToYagiazMtoWueDTEIexTxchIFfF2xV5rdhnGwxACj_ZsFvVzSP4dGBpU7pjRBeADGtSN93uADttSkSBA8VKdyPx878jrSs9UbhFZctJa9DdFtyy3_XuFO8D9xEJ3rCb39bsWvQqKJJLhne-xJQob_TMw"/>
+<div>
+<div class="font-headline-md text-base font-semibold text-on-surface">SmileCare Clinic</div>
+<div class="text-xs text-outline">dr.smith@smilecare.com</div>
+</div>
+</div>
+</td>
+<td class="py-md px-md"><span class="bg-secondary-container text-on-secondary-container text-xs px-2 py-1 rounded-md font-medium">Dental</span></td>
+<td class="py-md px-md text-on-surface-variant">New York, NY</td>
+<td class="py-md px-md text-right font-data-mono text-on-surface">1,248</td>
+<td class="py-md px-md text-right font-data-mono font-medium text-on-surface">$142,500</td>
+<td class="py-md px-md">
+<div class="flex items-center justify-center gap-xs text-amber-500">
+<span class="material-symbols-outlined filled text-sm">star</span>
+<span class="font-data-mono text-on-surface text-sm">4.9</span>
+</div>
+</td>
+<td class="py-md px-md text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded text-[12px] font-bold uppercase tracking-wider bg-green-100 text-status-green border border-green-200">Active</span>
+</td>
+<td class="py-md px-md text-right">
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">more_horiz</span></button>
+</td>
+</tr>
+<!-- Active Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-md"><input class="warm-checkbox" type="checkbox"/></td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-lg">G</div>
+<div>
+<div class="font-headline-md text-base font-semibold text-on-surface">Glow Beauty Lounge</div>
+<div class="text-xs text-outline">hello@glowbeauty.com</div>
+</div>
+</div>
+</td>
+<td class="py-md px-md"><span class="bg-secondary-container text-on-secondary-container text-xs px-2 py-1 rounded-md font-medium">Beauty</span></td>
+<td class="py-md px-md text-on-surface-variant">Los Angeles, CA</td>
+<td class="py-md px-md text-right font-data-mono text-on-surface">892</td>
+<td class="py-md px-md text-right font-data-mono font-medium text-on-surface">$89,200</td>
+<td class="py-md px-md">
+<div class="flex items-center justify-center gap-xs text-amber-500">
+<span class="material-symbols-outlined filled text-sm">star</span>
+<span class="font-data-mono text-on-surface text-sm">4.7</span>
+</div>
+</td>
+<td class="py-md px-md text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded text-[12px] font-bold uppercase tracking-wider bg-green-100 text-status-green border border-green-200">Active</span>
+</td>
+<td class="py-md px-md text-right">
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">more_horiz</span></button>
+</td>
+</tr>
+<!-- Pending Row (Target for Modal Overlay) -->
+<tr class="bg-pending-bg relative">
+<!-- Semi-transparent overlay to highlight modal target -->
+<td class="py-md px-md relative z-0"><input class="warm-checkbox" type="checkbox"/></td>
+<td class="py-md px-md relative z-0">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg">H</div>
+<div>
+<div class="font-headline-md text-base font-semibold text-on-surface">HealPoint Clinic</div>
+<div class="text-xs text-outline">admin@healpoint.net</div>
+</div>
+</div>
+</td>
+<td class="py-md px-md relative z-0"><span class="bg-secondary-container text-on-secondary-container text-xs px-2 py-1 rounded-md font-medium">Medical</span></td>
+<td class="py-md px-md text-on-surface-variant relative z-0">Chicago, IL</td>
+<td class="py-md px-md text-right font-data-mono text-on-surface relative z-0">0</td>
+<td class="py-md px-md text-right font-data-mono font-medium text-on-surface relative z-0">$0</td>
+<td class="py-md px-md relative z-0">
+<div class="flex items-center justify-center gap-xs text-outline">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="font-data-mono text-sm">N/A</span>
+</div>
+</td>
+<td class="py-md px-md text-center relative z-0">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded text-[12px] font-bold uppercase tracking-wider bg-amber-100 text-status-amber border border-amber-200">Pending</span>
+</td>
+<td class="py-md px-md text-right relative z-0">
+<div class="flex justify-end gap-xs">
+<button class="bg-primary text-white text-xs px-3 py-1.5 rounded font-medium hover:bg-blue-700 transition">Approve</button>
+<button class="border border-warm-border text-on-surface-variant text-xs px-3 py-1.5 rounded font-medium hover:bg-surface-container-high transition">Reject</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Overlay Modal for Pending Row -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center modal-overlay">
+<!-- Modal Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-lg shadow-modal w-full max-w-md border border-warm-border flex flex-col items-center text-center transform scale-100 transition-transform">
+<div class="w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-2xl mb-md">
+                H
+            </div>
+<h2 class="font-headline-lg text-headline-md font-bold text-on-surface mb-xs">Approve Provider?</h2>
+<p class="text-on-surface-variant text-sm mb-lg">You are about to approve <strong>HealPoint Clinic</strong> (admin@healpoint.net). They will be granted full access to the platform and can start accepting bookings.</p>
+<div class="w-full bg-surface-container-low rounded-lg p-md text-left mb-lg border border-warm-border">
+<div class="text-xs text-outline uppercase font-semibold mb-xs">Provider Details</div>
+<div class="grid grid-cols-2 gap-sm text-sm">
+<div>
+<span class="text-on-surface-variant block">Category</span>
+<span class="font-medium text-on-surface">Medical</span>
+</div>
+<div>
+<span class="text-on-surface-variant block">Location</span>
+<span class="font-medium text-on-surface">Chicago, IL</span>
+</div>
+<div class="col-span-2">
+<span class="text-on-surface-variant block">Submitted</span>
+<span class="font-medium text-on-surface">Oct 24, 2023 - 14:32</span>
+</div>
+</div>
+</div>
+<div class="flex w-full gap-md">
+<button class="flex-1 h-10 rounded-lg border border-warm-border text-on-surface font-medium hover:bg-surface-container-high transition-colors">Cancel</button>
+<button class="flex-1 h-10 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors shadow-sm">Approve</button>
+</div>
+</div>
+</div>
+</body></html>
