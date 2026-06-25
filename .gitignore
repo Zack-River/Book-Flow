@@ -1,4 +1,5 @@
-*.md
 !README.md
-_Arch
-
+arch
+NOTES.md
+node_modules
+.next
